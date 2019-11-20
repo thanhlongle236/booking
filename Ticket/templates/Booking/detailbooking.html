@@ -1,0 +1,173 @@
+{% extends "pages/base.html" %}
+{% load staticfiles %}
+{% block css %} {% static 'styles/styleofticket.css' %} {% endblock %}
+{% block content %}
+<div class="menu">
+    <nav class="navbar navbar-expand-sm">
+        <div class="container">
+            <div class="row">
+                <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#menutren" aria-controls="collapsibleNavId"
+                    aria-expanded="false" aria-label="Toggle navigation"></button>
+                <div class="collapse navbar-collapse" id="menutren">
+                        <a class="navbar-brand" href="#"><img src="{% static 'Homepage/vendor/img/lg.png' %}" alt=""></a>
+                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="/">Trang Chủ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'booking' %}">đặt vé</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
+<!-- end menu -->
+<div class="ticketbooking">
+        <div class="container">
+            <div class="row text-xs-center">
+                <div class="col-sm-12">
+                    <span>{{post.DiemDi}}</span>
+                    <i class="fas fa-long-arrow-alt-right iconticket"></i>
+                    <span>{{post.DiemDen}}</span>
+                    <i class="fas fa-chevron-left iconticket"></i>
+                    <span>{{post.NgayDi}}</span>
+                    <i class="fas fa-chevron-right iconticket"></i>
+                </div>
+            </div>
+        </div>
+</div>
+
+<div class="searchcontent">
+        {% for item in post.xe_set.all %}
+            {% for item2 in item.giave_set.all %}
+        <div class="container content">
+            <div class="row agencyinfo">  
+                <div class="col-sm-2">               
+                    <!-- <img src='{{item.AnhHangXe.url}}' alt=""> -->
+                    <h3><i class="fas fa-subway mr-1"></i>{{item.IDHangXe}}</h3>
+                </div>
+                <div class="col-sm-3 text-xs-center">
+                    <h3><i class="fas fa-bus mr-1"></i>{{item.IDLoaiXe}}</h3>
+                </div>
+                <div class="col-sm-2 text-xs-left"><h3><i class="fas fa-clock mr-1"></i>{{post.GioDi}}</h3></div>
+                <div class="col-sm-2"><h3><i class="fas fa-couch mr-1"></i>{{item3.SoGhe}}  chỗ online</h3></div>
+                <div class="col-sm-2"><h3><i class="fas fa-dollar-sign mr-1"></i>{{item2.GiaVeXe}} VNĐ</h3></div>
+                <!-- <div class="col-sm-4"><p class="contenttop">Tổng đài đặt vé Online: <span>19001730</span></p></div> -->
+                <!-- <div class="col-sm-2"><p class="contenttop"><i class="fas fa-bus mr-1"></i>25 Chuyến</p></div> -->
+                <div class="col-sm-1"><button id="btnfirst" class="btn btn-success"
+                data-toggle="collapse" data-target="#{{item.id}}">Chọn chỗ</button></div>
+                <div id="{{item.id}}" class="collapse">
+                    <div class="container contentsecond">
+                        <div class="row routeinfo">
+                            {% for item3 in item.ghe_set.all %}
+                            <!-- <div class="col-sm-2"><p class="contentmid"><i class="fas fa-clock mr-1"></i>{{post.GioDi}}</p></div> -->
+                            <!-- <div class="col-sm-4"><p class="contentmid"><i class="fas fa-subway mr-1"></i>BX Nước Ngầm<i class="fas fa-long-arrow-alt-right mr-1 ml-1 iconticket"></i>BX Cửa Lò</p></div> -->
+                            <!-- <div class="col-sm-4"><p class="contentmid"><i class="fas fa-subway mr-1"></i>{{item.IDLoaiXe}}</p></div>
+                            <div class="col-sm-2"><p class="contentmid"><i class="fas fa-couch mr-1"></i>{{item3.SoGhe}}  chỗ online</p></div>
+                            <div class="col-sm-2"><p class="contentmid">{{item2.GiaVeXe}} VNĐ</p></div> -->
+                            <!-- <div class="col-sm-2"><button id="btnsecond" class="btn btn-danger" 
+                            data-toggle="collapse" data-target="#{{item.id}}">Chọn chỗ</button></div>		
+                            <div id="{{item.id}}" class="collapse"> -->
+                                <!-- aaaa -->
+                                <div class="container contentthird">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="row seatinfo">
+                                                <ul>
+                                                    <li>
+                                                        <a class="seats" data-toggle="tooltip" data-placement="top" title="A1">{{item3.SoGhe}}</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 cusinfo">
+                                            <form action="{% url 'bookkh' %}" method="POST">
+                                                {% csrf_token %} 
+                                                <!-- <div class="form-group row">
+                                                    <label for="" class="col-sm-4 col-form-label">Ghế đã chọn</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" readonly class="form-control" id="" value="C3, D3">
+                                                    </div>
+                                                </div>-->
+                                                <div class="form-group row">
+                                                    <label for="" class="col-sm-4 col-form-label">Thành tiền</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" readonly class="form-control" id="" value="{{item2.GiaVeXe}} VNĐ">
+                                                    </div>
+                                                </div> 
+                                                <div class="form-group row">
+                                                        <label for="" class="col-sm-4 col-form-label">Họ & Tên</label>
+                                                        <div class="col-sm-8">
+                                                            {{ f.TenKhachHang }}
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="" class="col-sm-4 col-form-label">Số điện thoại</label>
+                                                        <div class="col-sm-8"> 
+                                                            {{f.DienThoai}}
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="" class="col-sm-4 col-form-label">Email</label>
+                                                        <div class="col-sm-8">
+                                                            {{f.Email}}
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="" class="col-sm-4 col-form-label">Điểm đón</label>
+                                                        <div class="col-sm-8">
+                                                            {{f.DiemDon}}
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="" class="col-sm-4 col-form-label">Ghi chú</label>
+                                                        <div class="col-sm-8">
+                                                            {{f.GhiChu}}
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group row">
+                                                        <label for="" class="col-sm-4 col-form-label"></label>
+                                                        <div class="col-sm-8">
+                                                            <button type="submit" class="btn btn-danger">Đặt Vé</button>
+                                                            <button type="reset" class="btn btn-success">Điền Lại</button>
+                                                        </div>
+                                                    </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            <!-- </div> -->
+                            {% endfor %}
+                        </div>
+                        
+                    </div>
+                    
+                </div>    
+            </div>
+        </div>
+            {% endfor %}
+        {% endfor %}
+    </div>
+    <!-- <script>
+        $(function(){
+            var button = true;
+            $('#btnfirst').on('click', function(){
+                if ($('#btnfirst').text().indexOf('Đóng') > -1){
+                $(this).text('Xem chuyến xe');
+                } else{
+                $(this).text('Đóng');
+                }
+            });
+            $('#{{item3.id}}').on('click', function(){
+                if ($('#{{item3.id}}').text().indexOf('Ẩn') > -1){
+                $(this).text('Chọn chỗ');
+                } else{
+                $(this).text('Ẩn');
+            }
+            });
+        });
+    </script> -->
+
+{% endblock %}

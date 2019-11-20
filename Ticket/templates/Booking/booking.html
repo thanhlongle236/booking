@@ -1,0 +1,59 @@
+{% extends "pages/base.html" %}
+{% load staticfiles %}
+{% block css %} {% static 'styles/styleofticket.css' %} {% endblock %}
+{% block content %} 
+<div class="menu">
+		<nav class="navbar navbar-expand-sm">
+			<div class="container">
+				<div class="row">
+					<button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#menutren" aria-controls="collapsibleNavId"
+						aria-expanded="false" aria-label="Toggle navigation"></button>
+					<div class="collapse navbar-collapse" id="menutren">
+							<a class="navbar-brand" href="#"><img src="{% static 'Homepage/vendor/img/lg.png' %}" alt=""></a>
+						<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+							<li class="nav-item active">
+								<a class="nav-link" href="/">Trang Chủ</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="{% url 'booking' %}">đặt vé</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</nav>
+	</div>
+	<!-- end menu -->
+	<div class="ticketbooking">
+		<div class="container">
+			<div class="row text-xs-center">
+				<div class="col-sm-12">
+					<h5 class="display-5" style="color:white">DANH SÁCH CÁC TUYẾN XE</h5>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Content -->
+	<div class="bookingcont">
+		<div class="container">
+			<div class="row routescont">
+				{% for post in Booking %}
+				<div class="col-sm-5">
+					<div class="row">
+						<div class="col-sm-4"><i>{{post.DiemDi}}</i></div>
+						<div class="col-sm-4"><i class="fas fa-long-arrow-alt-right fa-2x iconticket2"></i></div>
+						<div class="col-sm-4"><i>{{post.DiemDen}}</i></div>
+					</div>
+				</div>
+				<div class="col-sm-4 text-xs-right"><i class="fas fa-calendar-alt fa-2x iconticket2"></i><i>{{post.NgayDi}}</i></div>
+				<!-- <div class="col-sm-2"><i class="fas fa-clock fa-2x iconticket2"></i>{{item.GioDi}}</div> -->
+				<div class="col-sm-1 text-xs-left"></div>
+				<div class="col-sm-2"><a href="{% url 'detailbooking' post.id %}"><button class="btn btn-outline-primary">Chọn Hãng Xe</button></a></div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+	<!-- end Content -->
+{% endblock %}
+	

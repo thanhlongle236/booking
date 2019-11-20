@@ -1,0 +1,87 @@
+{% extends "pages/base.html" %}
+{% load staticfiles %}
+{% block css %} {% static 'styles/styleofticket.css' %} {% endblock %}
+{% block content %}
+
+<div class="container contentthird">
+    <div class="row">
+        <div class="col-sm-6">
+            <!-- <div class="row seatinfo">
+                <ul>
+                    <li>
+                        <a class="seats" data-toggle="tooltip" data-placement="top" title="A1"></a>
+                    </li>
+                </ul>
+            </div> -->
+        </div>
+        <div class="col-sm-6 cusinfo mt-1">
+            <form action="{% url 'bookkh' %}" method="POST">
+                {% csrf_token %} 
+                <!-- <div class="form-group row">
+                    <label for="" class="col-sm-4 col-form-label">Nhà xe</label>								
+                    <div class="col-sm-8">
+                        <input type="text" readonly class="form-control" id="" value="Văn Minh">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="" class="col-sm-4 col-form-label">Ghế đã chọn</label>
+                    <div class="col-sm-8">
+                        <input type="text" readonly class="form-control" id="" value="C3, D3">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="" class="col-sm-4 col-form-label">Tổng tiền</label>
+                    <div class="col-sm-8">
+                        <input type="text" readonly class="form-control" id="" value="250.000đ">
+                    </div>
+                </div> -->
+                <div class="form-group row">
+                    <label for="" class="col-sm-4 col-form-label">Họ & Tên</label>
+                    <div class="col-sm-8">
+                        <!-- <input type="text" class="form-control" id="" placeholder="Nguyễn Văn A" value="{{ f.TenKhachHang }}"> -->
+                        {{ f.TenKhachHang }}
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="" class="col-sm-4 col-form-label">Số điện thoại</label>
+                    <div class="col-sm-8">
+                        <!-- <input type="text" class="form-control" id="" placeholder="0332566xxx" value="{{f.DienThoai}}"> -->
+                        {{f.DienThoai}}
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="" class="col-sm-4 col-form-label">Email</label>
+                    <div class="col-sm-8">
+                        <!-- <input type="email" class="form-control" id="" placeholder="xeca@gmail.com" value="{{f.Email}}"> -->
+                        {{f.Email}}
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="" class="col-sm-4 col-form-label">Điểm đón</label>
+                    <div class="col-sm-8">
+                        <!-- <input type="text" class="form-control" id="" value="{{f.DiemDon}}"> -->
+                        {{f.DiemDon}}
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="" class="col-sm-4 col-form-label">Ghi chú</label>
+                    <div class="col-sm-8">
+                        <!-- <input type="text" class="form-control" id="" value="{{f.GhiChu}}"> -->
+                        {{f.GhiChu}}
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="" class="col-sm-4 col-form-label"></label>
+                    <div class="col-sm-8">
+                        <button type="submit" class="btn btn-danger">Đặt Vé</button>
+                        <button type="reset" class="btn btn-success">Điền Lại</button>
+                    </div>
+                </div>
+                <!-- {{f}} -->
+                
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

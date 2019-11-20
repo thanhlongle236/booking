@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load staticfiles %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>{% block title %}{% endblock %}</title>
+	<link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/bootstrap.css' %}">
+	<link rel="stylesheet" href="{% block css %} {% endblock %}">
+</head>
+<body>
+	<div class="bgblack">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-6"></div>
+				<div class="col-sm-6">
+					<div class="row">
+						<div class="col-sm-6">
+								<p>Tổng đài vé online:<a href=""> 19001730</a></p>
+						</div>
+						<div class="col-sm-6">
+								<p>Email:<a href=""> cskh@xeca.vn</a></p>
+						</div>
+					</div>		
+				</div>
+			</div>
+		</div>
+    </div>
+    <!-- content -->
+    {% block content %} 
+    
+    {% endblock %}
+	<div class="footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-4">
+					<h3>về chúng tôi</h3>
+					<div class="cont">
+						<ul>
+							<li><a href="">Về Chúng Tôi</a></li>
+							<li><a href="">Tuyển Dụng</a></li>
+							<li><a href="">Liên Hệ</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<h3>Hỗ trợ</h3>
+					<div class="cont">
+						<ul>
+							<li><a href="">Quy Định</a></li>
+							<li><a href="">Câu Hỏi Thường Gặp</a></li>
+							<li><a href="">Chính Sách Bảo Mật</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-sm-4 contacts">
+					<h3>liên hệ</h3>
+					<div class="c1">Trụ sở chính</div>
+					<div class="c2">
+						<div><i class="fas fa-map-marker-alt"></i>	Tầng 9, tòa nhà Licogi 13, số 164 Khuất Duy Tiến, Phường Nhân Chính, Quận Thanh Xuân, Hà Nội</div>
+						<div><i class="fas fa-phone"></i>	1900 1730 - 0888 768 877</div>
+						<div><i class="fas fa-envelope"></i> cskh@xeca.vn</div>
+					</div>
+					<div class="socialcontent">
+						<a class="socialitem" href=""><i class="fab fa-facebook-f"></i></a>
+						<a class="socialitem" href=""><i class="fab fa-twitter"></i></a>
+						<a class="socialitem" href=""><i class="fab fa-youtube"></i></a>
+						<a class="socialitem" href=""><i class="fab fa-google-plus-g"></i></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="footerbot">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-4 col-xs-4"><p>© 2014-2018 xeca.vn All Rights Reserved</p></div>
+				<div class="col-sm-4 col-xs-4"></div>
+				<div class="col-sm-2 col-xs-2"><img src="{% static 'img/dadangkybct.png' %}" alt=""></div>
+				<div class="col-sm-2 col-xs-2"><img src="{% static 'img/bo-cong-thuong.png' %}" alt=""></div>
+			</div>
+		</div>
+    </div>
+    
+	<script src="{% static 'bootstrap/bootstrap.js' %}"></script>
+    <script src="{% static 'fontawesome/fontawesome.js' %}"></script>
+    <script src="{% static 'fontawesome/solid.js' %}"></script>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

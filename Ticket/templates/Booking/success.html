@@ -1,0 +1,28 @@
+{% extends "pages/base.html" %}
+{% load staticfiles %}
+{% block css %} {% static 'styles/styleofticket.css' %} {% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="alert alert-success">
+            <strong>Success!</strong> This alert box could indicate a successful or positive action.
+            <table>
+                <tr>
+                    <td>TenKhachHang</td>
+                    <td>DienThoai</td>
+                    <td>Email</td>
+                    <td>DiemDon</td>
+                    <td>GhiChu</td>
+                </tr>
+                <tr>
+                    <td>{{data.TenKhachHang}}</td>
+                    <td>{{data.DienThoai}}</td>
+                    <td>{{data.Email}}</td>
+                    <td>{{data.DiemDon}}</td>
+                    <td>{{data.GhiChu}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

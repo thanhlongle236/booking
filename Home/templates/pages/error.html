@@ -1,0 +1,10 @@
+{% extends "pages/base.html" %}
+
+{% block title %} Error {% endblock %}
+{% load staticfiles %}
+{% block css %} {% static 'styles/style.css' %} {% endblock %}
+{% block content %} 
+<h1>404</h1>
+{% endblock %}
+
+<!-- Nhớ sửa DEBUG = False trong setting mới chạy đc file này. vì khi phát triển web phải hiển thị lỗi để chỉnh sửa -->

@@ -1,0 +1,140 @@
+{% extends "pages/base.html" %}
+{% load staticfiles %}
+{% block css %} {% static 'styles/styleofticket.css' %} {% endblock %}
+{% block content %} 
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-8 col-sm-push-2">
+                {% if qs %}
+                <h1>{{qs.TenHangXe}}</h1>    
+                <img src="{{qs.AnhHangXe.url}}" alt="">
+                    {% for item in qs.xe_set.all %}
+                    <div class="row mb-2">
+                        <div class="col-sm-12">
+                            <h2>{{item.TenXe}}</h2>
+                            <h2>{{item.TinhTrang}}</h2>
+                            <h2>{{item.IDLoaiXe}}</h2>
+                            <h2>{{item.IDHangXe}}</h2>
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% endif %}		
+			</div>
+		</div>
+    </div>
+    <div class="searchcontent">
+        {% for item in qs.xe_set.all %}
+        <div class="container content">
+            
+            <div class="row agencyinfo">
+                
+                <div class="col-sm-1">               
+                    <!-- <img src='{{qs.AnhHangXe.url}}' alt=""> -->
+                    <h3>{{item.TenXe}}</h3>
+                </div>
+                <div class="col-sm-2">
+                    <h3>{{item.IDHangXe}}</h3>
+                </div>  
+                
+                <div class="col-sm-4"><p class="contenttop">Tổng đài đặt vé Online: <span>19001730</span></p></div>
+                <div class="col-sm-3"><p class="contenttop"><i class="fas fa-bus mr-1"></i>25 Chuyến</p></div>
+                <div class="col-sm-2"><button id="btnfirst" class="btn btn-success" onclick="if(document.getElementById('spoiler') .style.display=='none') {document.getElementById('spoiler') .style.display=''}else{document.getElementById('spoiler') .style.display='none'}">Xem chuyến xe</button></div>
+                <div id="spoiler" style="display:none">
+                    <div class="container contentsecond">
+                        <div class="row routeinfo">
+                            <div class="col-sm-2"><p class="contentmid"><i class="fas fa-clock mr-1"></i>08:30</p></div>
+                            <div class="col-sm-4"><p class="contentmid"><i class="fas fa-subway mr-1"></i>BX Nước Ngầm<i class="fas fa-long-arrow-alt-right mr-1 ml-1 iconticket"></i>BX Cửa Lò</p></div>
+                            <div class="col-sm-3"><p class="contentmid"><i class="fas fa-couch mr-1"></i>20  chỗ online</p></div>
+                            <div class="col-sm-1"><p class="contentmid">250,000đ</p></div>
+                            <div class="col-sm-2"><button id="btnsecond" class="btn btn-danger" onclick="if(document.getElementById('bookview') .style.display=='none') {document.getElementById('bookview') .style.display=''}else{document.getElementById('bookview') .style.display='none'}">Chọn chỗ</button></div>		
+                            <div id="bookview" style="display:none">
+                                <!-- aaaa -->
+                                <div class="container contentthird">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="row seatinfo">
+                                                <ul>
+                                                    <li>
+                                                        <a class="seats" data-toggle="tooltip" data-placement="top" title="A1"></a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6 cusinfo">
+                                            <form action="{% url 'bookkh' %}" method="POST">
+                                                {% csrf_token %} 
+                                                <div class="form-group row">
+                                                    <label for="" class="col-sm-4 col-form-label">Nhà xe</label>								
+                                                    <div class="col-sm-8">
+                                                        <input type="text" readonly class="form-control" id="" value="Văn Minh">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="" class="col-sm-4 col-form-label">Ghế đã chọn</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" readonly class="form-control" id="" value="C3, D3">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="" class="col-sm-4 col-form-label">Tổng tiền</label>
+                                                    <div class="col-sm-8">
+                                                        <input type="text" readonly class="form-control" id="" value="250.000đ">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="" class="col-sm-4 col-form-label">Họ & Tên</label>
+                                                    <div class="col-sm-8">
+                                                        <!-- <input type="text" class="form-control" id="" placeholder="Nguyễn Văn A" value="{{ f.TenKhachHang }}"> -->
+                                                        {{ f.TenKhachHang }}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="" class="col-sm-4 col-form-label">Số điện thoại</label>
+                                                    <div class="col-sm-8">
+                                                        <!-- <input type="text" class="form-control" id="" placeholder="0332566xxx" value="{{f.DienThoai}}"> -->
+                                                        {{f.DienThoai}}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="" class="col-sm-4 col-form-label">Email</label>
+                                                    <div class="col-sm-8">
+                                                        <!-- <input type="email" class="form-control" id="" placeholder="xeca@gmail.com" value="{{f.Email}}"> -->
+                                                        {{f.Email}}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="" class="col-sm-4 col-form-label">Điểm đón</label>
+                                                    <div class="col-sm-8">
+                                                        <!-- <input type="text" class="form-control" id="" value="{{f.DiemDon}}"> -->
+                                                        {{f.DiemDon}}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="" class="col-sm-4 col-form-label">Ghi chú</label>
+                                                    <div class="col-sm-8">
+                                                        <!-- <input type="text" class="form-control" id="" value="{{f.GhiChu}}"> -->
+                                                        {{f.GhiChu}}
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label for="" class="col-sm-4 col-form-label"></label>
+                                                    <div class="col-sm-8">
+                                                        <button type="submit" class="btn btn-danger">Đặt Vé</button>
+                                                        <button type="reset" class="btn btn-success">Điền Lại</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
+                </div>    
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}
+	
